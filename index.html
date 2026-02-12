@@ -1,78 +1,359 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MAR Engineering Consulting, LLC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Coastal engineering & resilience advisory for Gulf Coast municipalities, ports, and agencies." />
+
   <style>
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      background-color: #f4f6f8;
-      color: #1c2b39;
-      line-height: 1.6;
+    :root{
+      /* Change these to shift the whole vibe */
+      --bg: #0b1220;          /* deep navy */
+      --surface: rgba(255,255,255,0.08);
+      --surface2: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --line: rgba(255,255,255,0.18);
+      --accent: #c9b27c;      /* sand/gold accent */
+      --ink: #0d2b45;         /* for light sections */
+      --lightbg: #f4f6f8;
+      --shadow: 0 18px 45px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --maxw: 980px;
     }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 60px 30px;
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
     }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-      color: #0d2b45;
+    a{ color: inherit; }
+
+    /* Top nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,0.72);
+      border-bottom: 1px solid var(--line);
     }
-    h2 {
-      margin-top: 50px;
-      font-size: 20px;
-      color: #0d2b45;
-      border-bottom: 1px solid #d8dde3;
-      padding-bottom: 8px;
+    .nav-inner{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
     }
-    p {
-      margin: 10px 0;
+    .brand{
+      display:flex; flex-direction:column;
+      gap:2px;
+      text-decoration:none;
     }
-    ul {
-      padding-left: 20px;
-    }
-    footer {
-      margin-top: 60px;
+    .brand strong{
+      letter-spacing: 0.2px;
       font-size: 14px;
-      color: #6b7a88;
+    }
+    .brand span{
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .navlinks{
+      display:flex; gap: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .navlinks a{ text-decoration:none; }
+    .navlinks a:hover{ color: var(--text); }
+
+    /* Hero */
+    .hero{
+      position: relative;
+      min-height: 68vh;
+      display:flex;
+      align-items:flex-end;
+      padding: 48px 0;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(11,18,32,0.25) 0%, rgba(11,18,32,0.85) 70%, rgba(11,18,32,1) 100%),
+        url("images/hero-coast.jpg") center/cover no-repeat;
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.03);
+    }
+    .hero-inner{
+      position: relative;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 18px 8px;
+      width: 100%;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(201,178,124,0.18);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -0.4px;
+      line-height: 1.1;
+      max-width: 18ch;
+    }
+    .sub{
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 2vw, 18px);
+      max-width: 60ch;
+    }
+    .cta{
+      margin-top: 22px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 14px;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.10); }
+    .btn.primary{
+      border-color: rgba(201,178,124,0.45);
+      background: linear-gradient(180deg, rgba(201,178,124,0.22), rgba(201,178,124,0.10));
+    }
+    .btn.primary:hover{ background: linear-gradient(180deg, rgba(201,178,124,0.28), rgba(201,178,124,0.12)); }
+
+    /* Sections */
+    .section{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 56px 18px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card{
+      grid-column: span 6;
+      padding: 18px 18px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill{
+      display:inline-block;
+      margin-top: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* Image strip */
+    .strip{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .strip .img{
+      grid-column: span 4;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: var(--surface2);
+      box-shadow: var(--shadow);
+    }
+    .strip img{
+      width:100%;
+      height: 210px;
+      object-fit: cover;
+      display:block;
+    }
+
+    /* Light section */
+    .light{
+      background: var(--lightbg);
+      color: #111827;
+      border-top: 1px solid rgba(13,43,69,0.10);
+      border-bottom: 1px solid rgba(13,43,69,0.10);
+    }
+    .light .section{ padding: 62px 18px; }
+    .light h2{
+      margin:0 0 10px;
+      color: var(--ink);
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+    .light p{ margin:0; color: rgba(17,24,39,0.78); }
+    .two{
+      display:grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+      align-items:start;
+    }
+    .box{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(13,43,69,0.10);
+      background: white;
+      box-shadow: 0 18px 40px rgba(13,43,69,0.08);
+    }
+    .box strong{ color: var(--ink); }
+    .box .muted{ color: rgba(17,24,39,0.72); font-size: 14px; }
+
+    /* Footer */
+    footer{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 40px 18px 55px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .card{ grid-column: span 12; }
+      .strip .img{ grid-column: span 12; }
+      .strip img{ height: 240px; }
+      .two{ grid-template-columns: 1fr; }
+      .navlinks{ display:none; }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>MAR Engineering Consulting, LLC</h1>
-    <p><strong>Coastal Engineering & Resilience Advisory</strong></p>
-    <p>Focused coastal engineering support for coastal municipalities, ports, and agencies.</p>
+  <div class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <strong>MAR Engineering Consulting, LLC</strong>
+        <span>Coastal Engineering & Resilience Advisory</span>
+      </a>
+      <div class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
 
-    <h2>Core Capabilities</h2>
-    <ul>
-      <li>Shoreline stabilization & nature-based infrastructure</li>
-      <li>Beneficial use & sediment management strategy</li>
-      <li>Coastal numerical modeling</li>
-      <li>Regulatory coordination & implementation advisory</li>
-    </ul>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="kicker"><span class="dot"></span> Texas Gulf Coast • Principal-led delivery</div>
+        <h1>Implementation-focused coastal engineering.</h1>
+        <p class="sub">
+          Specialized advisory and technical support for shoreline stabilization, sediment strategy,
+          and coastal/compound flood analysis.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Contact</a>
+          <a class="btn" href="#services">View core capabilities</a>
+        </div>
+      </div>
+    </section>
 
-    <h2>Professional Experience</h2>
-    <p>
-      with over 14 years of experience in coastal engineering, including regional flood modeling, large-scale restoration initiatives,
-      shoreline stabilization design, and sediment management planning.
-    </p>
-    <p>
-      Engagement history includes coordination with state agencies, federal partners,
-      ports, and municipalities across Texas.
-    </p>
+    <section class="section" id="services">
+      <div class="grid">
+        <div class="card">
+          <h3>Coastal Protection & Nature-Based Infrastructure</h3>
+          <p>Living shorelines, revetments, hybrid concepts, and constructability-driven design support.</p>
+          <span class="pill">Design + permitting coordination</span>
+        </div>
+        <div class="card">
+          <h3>Sediment Management & Beneficial Use Strategy</h3>
+          <p>Planning support for dredged material placement, sediment pathways, and long-term programs.</p>
+          <span class="pill">Ports + navigation interests</span>
+        </div>
+        <div class="card">
+          <h3>Coastal & Compound Flood Modeling</h3>
+          <p>Physics-based and probabilistic analysis support for regional studies and risk mapping.</p>
+          <span class="pill">GIS-ready outputs</span>
+        </div>
+        <div class="card">
+          <h3>Owner’s Technical Advisory</h3>
+          <p>Senior-level review, scope shaping, risk reduction, and agency coordination to keep projects moving.</p>
+          <span class="pill">Principal-led</span>
+        </div>
+      </div>
+    </section>
 
-    <h2>Contact</h2>
-    <p>Email: info@marengineeringconsulting.com</p>
-    <p>Texas Gulf Coast</p>
+    <section class="section" aria-label="Project imagery">
+      <div class="strip">
+        <div class="img"><img src="images/marsh.jpg" alt="Coastal marsh" loading="lazy"></div>
+        <div class="img"><img src="images/revetment.jpg" alt="Shoreline protection" loading="lazy"></div>
+        <div class="img"><img src="images/shoreline.jpg" alt="Coastline" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="light" id="experience">
+      <div class="section">
+        <div class="two">
+          <div>
+            <h2>Professional Experience</h2>
+            <p>
+              MAR Engineering Consulting is led by <strong> P.E., PMP</strong>.
+              Services are structured for focused, senior-level support with an emphasis on practical implementation,
+              regulatory coordination, and clear technical documentation.
+            </p>
+          </div>
+          <div class="box">
+            <strong>Service Area</strong>
+            <div class="muted">Texas Gulf Coast and adjacent regions</div>
+            <div style="height:10px"></div>
+            <strong>Contact</strong>
+            <div class="muted" id="contact">info@marengineeringconsulting.com</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
-      © 2026 MAR Engineering Consulting, LLC
+      © 2026 MAR Engineering Consulting, LLC • marengineeringconsulting.com
     </footer>
-  </div>
+  </main>
 </body>
 </html>
