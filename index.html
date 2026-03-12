@@ -8,15 +8,14 @@
 
   <style>
     :root{
-      /* Change these to shift the whole vibe */
-      --bg: #0b1220;          /* deep navy */
+      --bg: #0b1220;
       --surface: rgba(255,255,255,0.08);
       --surface2: rgba(255,255,255,0.12);
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.72);
       --line: rgba(255,255,255,0.18);
-      --accent: #c9b27c;      /* sand/gold accent */
-      --ink: #0d2b45;         /* for light sections */
+      --accent: #c9b27c;
+      --ink: #0d2b45;
       --lightbg: #f4f6f8;
       --shadow: 0 18px 45px rgba(0,0,0,0.35);
       --radius: 18px;
@@ -33,7 +32,6 @@
     }
     a{ color: inherit; }
 
-    /* Top nav */
     .nav{
       position: sticky;
       top: 0;
@@ -52,7 +50,8 @@
       gap: 12px;
     }
     .brand{
-      display:flex; flex-direction:column;
+      display:flex;
+      flex-direction:column;
       gap:2px;
       text-decoration:none;
     }
@@ -65,14 +64,18 @@
       font-size: 12px;
     }
     .navlinks{
-      display:flex; gap: 14px;
+      display:flex;
+      gap: 14px;
       font-size: 13px;
       color: var(--muted);
     }
-    .navlinks a{ text-decoration:none; }
-    .navlinks a:hover{ color: var(--text); }
+    .navlinks a{
+      text-decoration:none;
+    }
+    .navlinks a:hover{
+      color: var(--text);
+    }
 
-    /* Hero */
     .hero{
       position: relative;
       min-height: 68vh;
@@ -83,7 +86,8 @@
     }
     .hero::before{
       content:"";
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background:
         linear-gradient(180deg, rgba(11,18,32,0.25) 0%, rgba(11,18,32,0.85) 70%, rgba(11,18,32,1) 100%),
         url("images/hero-coast.jpg") center/cover no-repeat;
@@ -109,7 +113,9 @@
       font-size: 13px;
     }
     .dot{
-      width: 8px; height: 8px; border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       background: var(--accent);
       box-shadow: 0 0 0 4px rgba(201,178,124,0.18);
     }
@@ -145,14 +151,17 @@
       color: var(--text);
       font-size: 14px;
     }
-    .btn:hover{ background: rgba(255,255,255,0.10); }
+    .btn:hover{
+      background: rgba(255,255,255,0.10);
+    }
     .btn.primary{
       border-color: rgba(201,178,124,0.45);
       background: linear-gradient(180deg, rgba(201,178,124,0.22), rgba(201,178,124,0.10));
     }
-    .btn.primary:hover{ background: linear-gradient(180deg, rgba(201,178,124,0.28), rgba(201,178,124,0.12)); }
+    .btn.primary:hover{
+      background: linear-gradient(180deg, rgba(201,178,124,0.28), rgba(201,178,124,0.12));
+    }
 
-    /* Sections */
     .section{
       max-width: var(--maxw);
       margin: 0 auto;
@@ -192,7 +201,6 @@
       background: rgba(255,255,255,0.04);
     }
 
-    /* Image strip */
     .strip{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -205,29 +213,57 @@
       border: 1px solid var(--line);
       background: var(--surface2);
       box-shadow: var(--shadow);
+      cursor: pointer;
+      position: relative;
+    }
+    .strip .img::after{
+      content: "Click to expand";
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      background: rgba(11,18,32,0.75);
+      color: rgba(255,255,255,0.92);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .strip .img:hover::after{
+      opacity: 1;
     }
     .strip img{
       width:100%;
       height: 210px;
       object-fit: cover;
       display:block;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+    .strip .img:hover img{
+      transform: scale(1.04);
+      filter: brightness(1.05);
     }
 
-    /* Light section */
     .light{
       background: var(--lightbg);
       color: #111827;
       border-top: 1px solid rgba(13,43,69,0.10);
       border-bottom: 1px solid rgba(13,43,69,0.10);
     }
-    .light .section{ padding: 62px 18px; }
+    .light .section{
+      padding: 62px 18px;
+    }
     .light h2{
       margin:0 0 10px;
       color: var(--ink);
       font-size: 22px;
       letter-spacing: -0.2px;
     }
-    .light p{ margin:0; color: rgba(17,24,39,0.78); }
+    .light p{
+      margin:0;
+      color: rgba(17,24,39,0.78);
+    }
     .two{
       display:grid;
       grid-template-columns: 1.3fr 0.7fr;
@@ -241,10 +277,14 @@
       background: white;
       box-shadow: 0 18px 40px rgba(13,43,69,0.08);
     }
-    .box strong{ color: var(--ink); }
-    .box .muted{ color: rgba(17,24,39,0.72); font-size: 14px; }
+    .box strong{
+      color: var(--ink);
+    }
+    .box .muted{
+      color: rgba(17,24,39,0.72);
+      font-size: 14px;
+    }
 
-    /* Footer */
     footer{
       max-width: var(--maxw);
       margin: 0 auto;
@@ -254,7 +294,56 @@
       border-top: 1px solid var(--line);
     }
 
-    /* Responsive */
+    /* Lightbox */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(3, 8, 18, 0.9);
+      z-index: 9999;
+    }
+    .lightbox.open{
+      display: flex;
+    }
+    .lightbox-content{
+      position: relative;
+      max-width: min(1200px, 96vw);
+      max-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox img{
+      max-width: 100%;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+      display: block;
+    }
+    .lightbox-close{
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    .lightbox-close:hover{
+      background: rgba(255,255,255,0.22);
+    }
+
     @media (max-width: 860px){
       .card{ grid-column: span 12; }
       .strip .img{ grid-column: span 12; }
@@ -323,9 +412,15 @@
 
     <section class="section" aria-label="Project imagery">
       <div class="strip">
-        <div class="img"><img src="images/habitatbenchconst.jpeg" alt="Coastal protection" loading="lazy"></div>
-        <div class="img"><img src="images/bulkhead.JPEG" alt="Bulkhead" loading="lazy"></div>
-        <div class="img"><img src="images/guanica.jpg" alt="guanica" loading="lazy"></div>
+        <div class="img">
+          <img src="images/habitatbenchconst.jpeg" alt="Coastal protection" loading="lazy">
+        </div>
+        <div class="img">
+          <img src="images/bulkhead.JPEG" alt="Bulkhead" loading="lazy">
+        </div>
+        <div class="img">
+          <img src="images/guanica.jpg" alt="Guanica shoreline" loading="lazy">
+        </div>
       </div>
     </section>
 
@@ -335,7 +430,7 @@
           <div>
             <h2>Professional Experience</h2>
             <p>
-              MAR Engineering Consulting is led by <strong> P.E., PMP</strong>.
+              MAR Engineering Consulting is led by <strong>Luis Manuel Maristany, P.E., PMP</strong>.
               Services are structured for focused, senior-level support with an emphasis on practical implementation,
               regulatory coordination, and clear technical documentation.
             </p>
@@ -345,7 +440,9 @@
             <div class="muted">Texas Gulf Coast and adjacent regions</div>
             <div style="height:10px"></div>
             <strong>Contact</strong>
-            <div class="muted" id="contact">info@marengineeringconsulting.com</div>
+            <a href="mailto:info@marengineeringconsulting.com?subject=Project Inquiry">
+            info@marengineeringconsulting.com
+            </a>
           </div>
         </div>
       </div>
@@ -355,5 +452,51 @@
       © 2026 MAR Engineering Consulting, LLC • marengineeringconsulting.com
     </footer>
   </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+      <img id="lightboxImage" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const galleryItems = document.querySelectorAll('.strip .img img');
+
+    galleryItems.forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeLightbox();
+      }
+    });
+  </script>
 </body>
 </html>
