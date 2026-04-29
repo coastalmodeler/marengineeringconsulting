@@ -4,454 +4,669 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MAR Engineering Consulting, LLC</title>
-  <meta name="description" content="Coastal engineering & resilience advisory for Gulf Coast municipalities, ports, and agencies." />
+  <meta name="description" content="Coastal engineering and resilience advisory for Gulf Coast and Caribbean projects." />
 
   <style>
     :root{
-      --bg: #061a1f;
-      --surface: rgba(255,255,255,0.08);
-      --surface2: rgba(255,255,255,0.12);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --line: rgba(255,255,255,0.18);
-      --accent: #9fc7c5;
-      --ink: #0d2b45;
-      --lightbg: #f2f7f7;
-      --shadow: 0 18px 45px rgba(0,0,0,0.35);
-      --radius: 18px;
-      --maxw: 980px;
+      --ink: #17242b;
+      --muted: #5f6f76;
+      --light: #f5f7f7;
+      --line: #d9e0e2;
+      --accent: #0f4c5c;
+      --accent2: #b88b4a;
+      --white: #ffffff;
+      --maxw: 1120px;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; }
-    body{
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
+
+    html{
+      scroll-behavior:smooth;
     }
-    a{ color: inherit; }
+
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--ink);
+      background:var(--white);
+      line-height:1.55;
+      font-size:16px;
+    }
+
+    a{
+      color:inherit;
+    }
+
+    .topbar{
+      border-bottom:1px solid var(--line);
+      background:#ffffff;
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
 
     .nav{
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(10px);
-      background: rgba(11,18,32,0.72);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner{
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 14px 18px;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:22px 24px;
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap: 12px;
+      align-items:center;
+      gap:32px;
     }
+
     .brand{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
       text-decoration:none;
+      letter-spacing:.02em;
     }
+
     .brand strong{
-      letter-spacing: 0.2px;
-      font-size: 14px;
+      display:block;
+      font-size:17px;
+      font-weight:700;
+      color:var(--ink);
     }
+
     .brand span{
-      color: var(--muted);
-      font-size: 12px;
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin-top:2px;
     }
-    .navlinks{
+
+    .links{
       display:flex;
-      gap: 14px;
-      font-size: 13px;
-      color: var(--muted);
+      gap:28px;
+      font-size:14px;
+      color:var(--muted);
     }
-    .navlinks a{
+
+    .links a{
       text-decoration:none;
     }
-    .navlinks a:hover{
-      color: var(--text);
+
+    .links a:hover{
+      color:var(--accent);
     }
 
     .hero{
-      position: relative;
-      min-height: 68vh;
+      position:relative;
+      min-height:620px;
       display:flex;
       align-items:flex-end;
-      padding: 48px 0;
-      overflow:hidden;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
       background:
-        linear-gradient(180deg, rgba(11,18,32,0.25) 0%, rgba(11,18,32,0.85) 70%, rgba(11,18,32,1) 100%),
+        linear-gradient(90deg, rgba(12,28,35,.82) 0%, rgba(12,28,35,.52) 42%, rgba(12,28,35,.18) 100%),
         url("images/hero-coast.jpg") center/cover no-repeat;
-      transform: scale(1.02);
-      filter: saturate(1.05) contrast(1.03);
     }
+
     .hero-inner{
-      position: relative;
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 0 18px 8px;
-      width: 100%;
-    }
-    .kicker{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .dot{
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(201,178,124,0.18);
-    }
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(30px, 4vw, 44px);
-      letter-spacing: -0.4px;
-      line-height: 1.1;
-      max-width: 18ch;
-    }
-    .sub{
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(15px, 2vw, 18px);
-      max-width: 60ch;
-    }
-    .cta{
-      margin-top: 22px;
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 11px 14px;
-      border-radius: 999px;
-      text-decoration:none;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      font-size: 14px;
-    }
-    .btn:hover{
-      background: rgba(255,255,255,0.10);
-    }
-    .btn.primary{
-      border-color: rgba(201,178,124,0.45);
-      background: linear-gradient(180deg, rgba(201,178,124,0.22), rgba(201,178,124,0.10));
-    }
-    .btn.primary:hover{
-      background: linear-gradient(180deg, rgba(201,178,124,0.28), rgba(201,178,124,0.12));
-    }
-
-    .section{
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 56px 18px;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-    }
-    .card{
-      grid-column: span 6;
-      padding: 18px 18px 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-    .card h3{
-      margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing: -0.2px;
-    }
-    .card p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .pill{
-      display:inline-block;
-      margin-top: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .strip{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .strip .img{
-      grid-column: span 4;
-      border-radius: var(--radius);
-      overflow:hidden;
-      border: 1px solid var(--line);
-      background: var(--surface2);
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      position: relative;
-    }
-    .strip .img::after{
-      content: "Click to expand";
-      position: absolute;
-      right: 12px;
-      bottom: 12px;
-      background: rgba(11,18,32,0.75);
-      color: rgba(255,255,255,0.92);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-    }
-    .strip .img:hover::after{
-      opacity: 1;
-    }
-    .strip img{
       width:100%;
-      height: 210px;
-      object-fit: cover;
-      display:block;
-      transition: transform 0.25s ease, filter 0.25s ease;
-    }
-    .strip .img:hover img{
-      transform: scale(1.04);
-      filter: brightness(1.05);
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:120px 24px 86px;
+      color:white;
     }
 
-    .light{
-      background: var(--lightbg);
-      color: #111827;
-      border-top: 1px solid rgba(13,43,69,0.10);
-      border-bottom: 1px solid rgba(13,43,69,0.10);
+    .eyebrow{
+      font-size:13px;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+      color:rgba(255,255,255,.78);
     }
-    .light .section{
-      padding: 62px 18px;
-    }
-    .light h2{
-      margin:0 0 10px;
-      color: var(--ink);
-      font-size: 22px;
-      letter-spacing: -0.2px;
-    }
-    .light p{
+
+    h1{
+      max-width:760px;
       margin:0;
-      color: rgba(17,24,39,0.78);
+      font-size:clamp(40px, 6vw, 72px);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      font-weight:700;
     }
-    .two{
+
+    .hero p{
+      max-width:650px;
+      margin:26px 0 0;
+      font-size:20px;
+      color:rgba(255,255,255,.86);
+    }
+
+    .hero-actions{
+      margin-top:34px;
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .button{
+      display:inline-block;
+      text-decoration:none;
+      padding:13px 18px;
+      border:1px solid rgba(255,255,255,.65);
+      color:white;
+      font-size:14px;
+      letter-spacing:.02em;
+    }
+
+    .button:hover{
+      background:white;
+      color:var(--ink);
+    }
+
+    .button.dark{
+      border-color:var(--accent);
+      background:var(--accent);
+      color:white;
+    }
+
+    .button.dark:hover{
+      background:var(--ink);
+      border-color:var(--ink);
+      color:white;
+    }
+
+    section{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:86px 24px;
+    }
+
+    .section-label{
+      font-size:13px;
+      color:var(--accent);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+      font-weight:700;
+    }
+
+    h2{
+      margin:0 0 24px;
+      font-size:clamp(30px, 3vw, 44px);
+      line-height:1.12;
+      letter-spacing:-.025em;
+      font-weight:700;
+      color:var(--ink);
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:20px;
+      line-height:1.25;
+      color:var(--ink);
+    }
+
+    p{
+      margin:0 0 18px;
+      color:var(--muted);
+    }
+
+    .intro{
       display:grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 18px;
+      grid-template-columns: .9fr 1.4fr;
+      gap:70px;
+      align-items:start;
+      border-bottom:1px solid var(--line);
+    }
+
+    .intro .lead{
+      font-size:22px;
+      line-height:1.45;
+      color:var(--ink);
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:42px;
+      margin-top:38px;
+    }
+
+    .service{
+      border-top:3px solid var(--accent);
+      padding-top:22px;
+    }
+
+    .service p{
+      font-size:15px;
+    }
+
+    .band{
+      max-width:none;
+      background:var(--light);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      padding:0;
+    }
+
+    .band-inner{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:86px 24px;
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:28px;
+      margin-top:38px;
+    }
+
+    .project{
+      background:white;
+      border:1px solid var(--line);
+    }
+
+    .project-image{
+      height:255px;
+      overflow:hidden;
+      cursor:pointer;
+      background:#e8eeee;
+    }
+
+    .project-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .25s ease;
+    }
+
+    .project-image:hover img{
+      transform:scale(1.025);
+    }
+
+    .project-body{
+      padding:24px;
+    }
+
+    .project-body p{
+      font-size:15px;
+      margin-bottom:0;
+    }
+
+    .bio{
+      display:grid;
+      grid-template-columns:.75fr 1.45fr;
+      gap:72px;
       align-items:start;
     }
-    .box{
-      padding: 18px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(13,43,69,0.10);
-      background: white;
-      box-shadow: 0 18px 40px rgba(13,43,69,0.08);
+
+    .bio-card{
+      border-top:4px solid var(--accent2);
+      padding-top:24px;
     }
-    .box strong{
-      color: var(--ink);
+
+    .bio-card strong{
+      display:block;
+      font-size:21px;
+      color:var(--ink);
+      margin-bottom:6px;
     }
-    .box .muted{
-      color: rgba(17,24,39,0.72);
-      font-size: 14px;
+
+    .bio-card span{
+      display:block;
+      color:var(--muted);
+      font-size:15px;
+      margin-bottom:22px;
+    }
+
+    .bio-card .contact-block{
+      margin-top:30px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+    }
+
+    .bio-card a{
+      color:var(--accent);
+      text-decoration:none;
+      border-bottom:1px solid rgba(15,76,92,.35);
+    }
+
+    .bio-card a:hover{
+      border-bottom-color:var(--accent);
+    }
+
+    .bio-copy p{
+      margin-bottom:20px;
+    }
+
+    .cta{
+      max-width:none;
+      background:var(--ink);
+      color:white;
+      padding:0;
+    }
+
+    .cta-inner{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:72px 24px;
+      display:flex;
+      justify-content:space-between;
+      gap:40px;
+      align-items:center;
+    }
+
+    .cta h2{
+      color:white;
+      font-size:36px;
+      margin-bottom:12px;
+    }
+
+    .cta p{
+      color:rgba(255,255,255,.72);
+      max-width:620px;
+      margin:0;
     }
 
     footer{
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 40px 18px 55px;
-      color: var(--muted);
-      font-size: 13px;
-      border-top: 1px solid var(--line);
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:34px 24px;
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      border-top:1px solid var(--line);
     }
 
-    /* Lightbox */
     .lightbox{
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: rgba(3, 8, 18, 0.9);
-      z-index: 9999;
-    }
-    .lightbox.open{
-      display: flex;
-    }
-    .lightbox-content{
-      position: relative;
-      max-width: min(1200px, 96vw);
-      max-height: 92vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox img{
-      max-width: 100%;
-      max-height: 92vh;
-      width: auto;
-      height: auto;
-      border-radius: 14px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
-      display: block;
-    }
-    .lightbox-close{
-      position: absolute;
-      top: -14px;
-      right: -14px;
-      width: 42px;
-      height: 42px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.14);
-      color: white;
-      font-size: 24px;
-      line-height: 1;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-    }
-    .lightbox-close:hover{
-      background: rgba(255,255,255,0.22);
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(0,0,0,.88);
+      z-index:9999;
     }
 
-    @media (max-width: 860px){
-      .card{ grid-column: span 12; }
-      .strip .img{ grid-column: span 12; }
-      .strip img{ height: 240px; }
-      .two{ grid-template-columns: 1fr; }
-      .navlinks{ display:none; }
+    .lightbox.open{
+      display:flex;
+    }
+
+    .lightbox-content{
+      position:relative;
+      max-width:min(1200px, 95vw);
+      max-height:92vh;
+    }
+
+    .lightbox img{
+      max-width:100%;
+      max-height:92vh;
+      display:block;
+      background:white;
+    }
+
+    .lightbox-close{
+      position:absolute;
+      top:-46px;
+      right:0;
+      border:0;
+      background:transparent;
+      color:white;
+      font-size:34px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    @media (max-width:900px){
+      .links{
+        display:none;
+      }
+
+      .hero{
+        min-height:560px;
+      }
+
+      .intro,
+      .bio{
+        grid-template-columns:1fr;
+        gap:34px;
+      }
+
+      .services,
+      .project-grid{
+        grid-template-columns:1fr;
+      }
+
+      .project-image{
+        height:280px;
+      }
+
+      .cta-inner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      footer{
+        flex-direction:column;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="nav">
-    <div class="nav-inner">
+  <header class="topbar">
+    <nav class="nav">
       <a class="brand" href="#top">
         <strong>MAR Engineering Consulting, LLC</strong>
         <span>Coastal Engineering & Resilience Advisory</span>
       </a>
-      <div class="navlinks">
+
+      <div class="links">
         <a href="#services">Services</a>
-        <a href="#experience">Experience</a>
+        <a href="#projects">Experience</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
-    </div>
-  </div>
+    </nav>
+  </header>
 
   <main id="top">
-    <section class="hero">
+    <div class="hero">
       <div class="hero-inner">
-        <div class="kicker"><span class="dot"></span> Texas Gulf Coast • Principal-led delivery</div>
-        <h1>Implementation-focused coastal engineering.</h1>
-        <p class="sub">
-          Specialized advisory and technical support for shoreline stabilization, sediment strategy,
-          and coastal/compound flood analysis.
+        <div class="eyebrow">Gulf Coast and Caribbean</div>
+        <h1>Coastal engineering focused on implementation.</h1>
+        <p>
+          Senior-level coastal engineering support for shoreline stabilization, sediment management,
+          flood resilience, and restoration projects across the Gulf Coast and Caribbean.
         </p>
-        <div class="cta">
-          <a class="btn primary" href="#contact">Contact</a>
-          <a class="btn" href="#services">View core capabilities</a>
+
+        <div class="hero-actions">
+          <a class="button" href="#services">View Services</a>
+          <a class="button" href="mailto:info@marengineeringconsulting.com?subject=Project Inquiry">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="intro">
+      <div>
+        <div class="section-label">Practice Focus</div>
+        <h2>Practical coastal solutions for complex shorelines.</h2>
+      </div>
+
+      <div>
+        <p class="lead">
+          MAR Engineering Consulting provides focused technical advisory, planning, and design support
+          for coastal infrastructure and restoration projects.
+        </p>
+        <p>
+          The practice is built around senior-level involvement, clear technical documentation,
+          regulatory awareness, and constructability-focused design. Services are structured to help
+          public agencies, ports, municipalities, and project teams move from concept to implementation.
+        </p>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-label">Services</div>
+      <h2>Core capabilities</h2>
+
+      <div class="services">
+        <div class="service">
+          <h3>Coastal Protection & Restoration</h3>
+          <p>
+            Shoreline stabilization, living shorelines, hybrid infrastructure, erosion control,
+            restoration planning, and design support for coastal systems exposed to waves, tides,
+            storms, and long-term shoreline change.
+          </p>
+        </div>
+
+        <div class="service">
+          <h3>Sediment & Dredging Strategy</h3>
+          <p>
+            Beneficial use planning, dredged material placement strategy, sediment management
+            frameworks, and technical support for navigation, restoration, and shoreline resilience
+            programs.
+          </p>
+        </div>
+
+        <div class="service">
+          <h3>Flood & Coastal Risk Analysis</h3>
+          <p>
+            Coastal hazard assessment, compound flood analysis, regional flood resilience studies,
+            GIS-based risk communication, and technical support for planning and design decisions.
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="services">
-      <div class="grid">
-        <div class="card">
-          <h3>Coastal Protection & Nature-Based Infrastructure</h3>
-          <p>Living shorelines, revetments, hybrid concepts, and constructability-driven design support.</p>
-          <span class="pill">Design + permitting coordination</span>
-        </div>
-        <div class="card">
-          <h3>Sediment Management & Beneficial Use Strategy</h3>
-          <p>Planning support for dredged material placement, sediment pathways, and long-term programs.</p>
-          <span class="pill">Ports + navigation interests</span>
-        </div>
-        <div class="card">
-          <h3>Coastal & Compound Flood Modeling</h3>
-          <p>Physics-based and probabilistic analysis support for regional studies and risk mapping.</p>
-          <span class="pill">GIS-ready outputs</span>
-        </div>
-        <div class="card">
-          <h3>Owner’s Technical Advisory</h3>
-          <p>Senior-level review, scope shaping, risk reduction, and agency coordination to keep projects moving.</p>
-          <span class="pill">Principal-led</span>
+    <div class="band" id="projects">
+      <div class="band-inner">
+        <div class="section-label">Representative Experience</div>
+        <h2>Project experience grounded in design, construction, and coastal stewardship.</h2>
+
+        <div class="project-grid">
+          <article class="project">
+            <div class="project-image">
+              <img src="images/habitatbenchconst.jpeg" alt="Habitat bench shoreline stabilization construction" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3>Habitat Bench Shoreline Stabilization</h3>
+              <p>
+                Design of a habitat bench shoreline stabilization system intended to reduce erosion
+                while enhancing coastal habitat. The work integrated wave energy dissipation,
+                bank stabilization, and nature-based shoreline elements to support long-term
+                ecological function.
+              </p>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-image">
+              <img src="images/bulkhead.JPEG" alt="Bulkhead replacement project" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3>Bulkhead Replacement</h3>
+              <p>
+                Engineering design for a replacement bulkhead system to stabilize an eroding
+                shoreline and protect adjacent infrastructure. The design considered coastal loading,
+                constructability, durability, and long-term shoreline performance.
+              </p>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-image">
+              <img src="images/guanica.jpg" alt="Beach in Guanica, Puerto Rico" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3>Guanica Coastline, Puerto Rico</h3>
+              <p>
+                Guanica is a coastal place of personal significance. Growing up sailing and fishing
+                in Puerto Rico helped shape a lifelong connection to the ocean and a professional
+                commitment to protecting and restoring coastal environments.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="section" aria-label="Project imagery">
-      <div class="strip">
-        <div class="img">
-          <img src="images/habitatbenchconst.jpeg" alt="Coastal protection" loading="lazy">
-        </div>
-        <div class="img">
-          <img src="images/bulkhead.JPEG" alt="Bulkhead" loading="lazy">
-        </div>
-        <div class="img">
-          <img src="images/guanica.jpg" alt="Guanica shoreline" loading="lazy">
-        </div>
-      </div>
-    </section>
+    <section class="bio" id="about">
+      <aside class="bio-card">
+        <strong>, P.E., PMP</strong>
+        <span>Founder | Coastal Engineer</span>
 
-    <section class="light" id="experience">
-      <div class="section">
-        <div class="two">
-          <div>
-            <h2>Professional Experience</h2>
-            <p>
-              MAR Engineering Consulting is led by <strong> P.E., PMP</strong>.
-              Services are structured for focused, senior-level support with an emphasis on practical implementation,
-              regulatory coordination, and clear technical documentation.
-            </p>
-          </div>
-          <div class="box">
-            <strong>Service Area</strong>
-            <div class="muted">Texas Gulf Coast and adjacent regions</div>
-            <div style="height:10px"></div>
-            <strong>Contact</strong>
+        <p>
+          Service region:<br>
+          Gulf Coast and Caribbean
+        </p>
+
+        <div class="contact-block" id="contact">
+          <p>
+            Contact:<br>
             <a href="mailto:info@marengineeringconsulting.com?subject=Project Inquiry">
-            info@marengineeringconsulting.com
+              info@marengineeringconsulting.com
             </a>
-          </div>
+          </p>
         </div>
+      </aside>
+
+      <div class="bio-copy">
+        <div class="section-label">Principal Engineer</div>
+        <h2>Technical depth shaped by coastal experience.</h2>
+
+        <p>
+          MAR Engineering Consulting is led by <strong>, P.E., PMP</strong>,
+          a coastal engineer with more than 12 years of experience delivering coastal resilience
+          and restoration projects across Texas, the Gulf of Mexico, and the Caribbean. His work
+          focuses on shoreline stabilization, nature-based infrastructure, sediment management,
+          and regional coastal and compound flood modeling.
+        </p>
+
+        <p>
+          He began his career working with Dr. Michael McCormick on the development of prototype
+          wave energy conversion systems and wave energy dissipation buoy technologies, gaining
+          early experience in coastal hydrodynamics, wave mechanics, and marine system design.
+          He holds a Bachelor’s degree in Coastal Engineering with a minor in Oceanography and has
+          spent more than a decade applying those principles to real-world coastal challenges
+          throughout Texas.
+        </p>
+
+        <p>
+          Over the course of his career, he has supported coastal resilience initiatives for
+          municipalities, ports, state agencies, and federal partners, including shoreline
+          stabilization projects, restoration programs, beneficial use of dredged material
+          initiatives, and regional flood risk studies. His approach emphasizes practical engineering
+          solutions that balance coastal processes, constructability, regulatory coordination,
+          and long-term resilience.
+        </p>
+
+        <p>
+          Originally from Puerto Rico, Lhe developed a deep connection to the ocean at an early age.
+          Growing up sailing and fishing in the Caribbean sparked his interest in coastal processes
+          and ultimately led him to pursue a career in coastal engineering. That connection to the
+          water continues to shape his professional work and fuels a passion for protecting and
+          restoring coastal environments for future generations.
+        </p>
       </div>
     </section>
 
-    <footer>
-      © 2026 MAR Engineering Consulting, LLC • marengineeringconsulting.com
-    </footer>
+    <div class="cta">
+      <div class="cta-inner">
+        <div>
+          <h2>Focused support for coastal projects.</h2>
+          <p>
+            Technical advisory, planning, design, and implementation support for coastal resilience,
+            restoration, and shoreline infrastructure projects.
+          </p>
+        </div>
+
+        <a class="button" href="mailto:info@marengineeringconsulting.com?subject=Project Inquiry">
+          Contact MAR Engineering
+        </a>
+      </div>
+    </div>
   </main>
+
+  <footer>
+    <div>© 2026 MAR Engineering Consulting, LLC</div>
+    <div>Coastal Engineering & Resilience Advisory</div>
+  </footer>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-content">
@@ -464,9 +679,9 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxClose = document.getElementById('lightboxClose');
-    const galleryItems = document.querySelectorAll('.strip .img img');
+    const galleryImages = document.querySelectorAll('.project-image img');
 
-    galleryItems.forEach((img) => {
+    galleryImages.forEach((img) => {
       img.addEventListener('click', () => {
         lightboxImage.src = img.src;
         lightboxImage.alt = img.alt;
@@ -487,15 +702,11 @@
     lightboxClose.addEventListener('click', closeLightbox);
 
     lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
+      if (e.target === lightbox) closeLightbox();
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-        closeLightbox();
-      }
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
     });
   </script>
 </body>
