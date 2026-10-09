@@ -108,6 +108,11 @@
       scroll-padding-top: 86px;
     }
 
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
     body {
       margin: 0;
       position: relative;
@@ -219,7 +224,8 @@
     .wordmark {
       display: inline-flex;
       align-items: center;
-      flex-shrink: 0;
+      flex-shrink: 1;
+      min-width: 0;
       text-decoration: none;
     }
 
@@ -227,6 +233,7 @@
       display: block;
       height: 88px;
       width: auto;
+      max-width: 100%;
       transition: height 440ms ease;
     }
 
@@ -1172,7 +1179,17 @@
       }
 
       .nav {
-        min-height: 72px;
+        height: 72px;
+      }
+
+      .wordmark-logo {
+        height: 40px;
+      }
+
+      [data-theme="dark"] .wordmark-logo {
+        height: 16px;
+        margin-left: 6px;
+        margin-top: -2px;
       }
 
       .menu-toggle {
@@ -1186,13 +1203,17 @@
         overflow: hidden;
         display: block;
         visibility: hidden;
-        background: var(--surface);
+        background: rgba(255, 255, 255, 0.97);
         backdrop-filter: var(--glass-blur);
         -webkit-backdrop-filter: var(--glass-blur);
         border-bottom: 1px solid var(--surface-border);
         opacity: 0;
         pointer-events: none;
         transition: max-height 220ms ease, opacity 180ms ease, visibility 220ms;
+      }
+
+      [data-theme="dark"] .nav-links {
+        background: rgba(0, 0, 0, 0.94);
       }
 
       .nav-links.open {
@@ -1320,13 +1341,13 @@
 
     @media (max-width: 450px) {
       .wordmark-logo {
-        height: 68px;
+        height: 28px;
       }
 
       [data-theme="dark"] .wordmark-logo {
-        height: 27.6px;
-        margin-left: 11px;
-        margin-top: -3px;
+        height: 12px;
+        margin-left: 5px;
+        margin-top: -1px;
       }
 
       .hero-actions .button {
