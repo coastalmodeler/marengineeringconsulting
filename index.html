@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Coastal Engineering Consultant | MAR Engineering Consulting</title>
   <meta name="description" content="Coastal engineering consulting for shoreline stabilization, marsh restoration, dredging, vessel wake modeling, coastal structures, and permitting.">
+  <meta name="keywords" content="coastal engineering, coastal engineering consultant, shoreline stabilization, marsh restoration, wetland restoration, dredging, beneficial use, coastal structures, passing-vessel studies, vessel wake modeling, coastal process modeling, permitting, construction support, Gulf Coast engineering, Puerto Rico engineering, Texas, Louisiana, Alabama, Florida, principal engineer, PE licensed engineering firm">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#226E93">
   <link rel="canonical" href="https://marengineeringconsulting.com/">
@@ -231,7 +232,7 @@
 
     .wordmark-logo {
       display: block;
-      height: 88px;
+      height: 36px;
       width: auto;
       max-width: 100%;
       transition: height 440ms ease;
@@ -243,16 +244,11 @@
       }
 
       .site-header.scrolled .wordmark-logo {
-        height: 56px;
-      }
-
-      [data-theme="dark"] .site-header.scrolled .wordmark-logo {
-        height: 22.8px;
+        height: 23px;
       }
     }
 
     [data-theme="dark"] .wordmark-logo {
-      height: 35.7px;
       margin-left: 14px;
       margin-top: -4px;
     }
@@ -1116,6 +1112,15 @@
       text-decoration-color: var(--copper);
       text-underline-offset: 6px;
       overflow-wrap: normal;
+      max-width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      .contact-card a {
+        display: inline-block;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
     }
 
     .contact-card span {
@@ -1183,11 +1188,10 @@
       }
 
       .wordmark-logo {
-        height: 40px;
+        height: clamp(13px, calc(6.5vw - 7.3px), 64px);
       }
 
       [data-theme="dark"] .wordmark-logo {
-        height: 16px;
         margin-left: 6px;
         margin-top: -2px;
       }
@@ -1280,6 +1284,20 @@
         grid-template-columns: 1fr;
       }
 
+      .intro-grid,
+      .capabilities-section .container,
+      .construction-section .container,
+      .client-section .container,
+      .delivery-grid,
+      .about-copy,
+      .contact-grid {
+        padding: 32px 18px;
+      }
+
+      .contact-card {
+        padding: 24px 16px;
+      }
+
       .construction-heading {
         gap: 20px;
       }
@@ -1340,12 +1358,21 @@
     }
 
     @media (max-width: 450px) {
-      .wordmark-logo {
-        height: 28px;
+      .intro-grid,
+      .capabilities-section .container,
+      .construction-section .container,
+      .client-section .container,
+      .delivery-grid,
+      .about-copy,
+      .contact-grid {
+        padding: 22px 12px;
+      }
+
+      .contact-card {
+        padding: 18px 12px;
       }
 
       [data-theme="dark"] .wordmark-logo {
-        height: 12px;
         margin-left: 5px;
         margin-top: -1px;
       }
@@ -1400,7 +1427,7 @@
   <header class="site-header">
     <nav class="nav container" aria-label="Primary navigation">
       <a class="wordmark" href="#top" aria-label="MAR Engineering Consulting home">
-        <img class="wordmark-logo" src="images/Mar-Engineering-Header-Logo-RGB.svg" data-light-src="images/Mar-Engineering-Header-Logo-RGB.svg" data-dark-src="images/Mar-Engineering-Header-Logo-RGB-darkmode.svg" alt="MAR Engineering Consulting">
+        <img class="wordmark-logo" src="images/Mar-Engineering-Header-Logo-RGB.svg" data-light-src="images/Mar-Engineering-Header-Logo-RGB.svg" data-dark-src="images/Mar-Engineering-Header-Logo-RGB-darkmode.svg" alt="Mar Engineering Consulting Logo">
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">
@@ -1460,7 +1487,7 @@
     <div class="credential-bar" role="region" aria-label="Firm credentials">
       <div class="credential-grid container reveal">
         <div class="credential">
-          <strong>14+ years</strong>
+          <strong>15+ years</strong>
           <span>Coastal engineering experience</span>
         </div>
         <div class="credential">
